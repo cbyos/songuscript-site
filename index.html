@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SONGUSCRIPT — Write the whole song.</title>
+<meta name="description" content="SONGUSCRIPT is a songwriting app for iPhone, iPad and Mac. Lyrics, chords, voice notes, rhymes and notation in one place. Coming 2027.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="SONGUSCRIPT — Write the whole song.">
+<meta property="og:description" content="A songwriting app for iPhone, iPad and Mac. Coming 2027.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8572a'/%3E%3Cpath d='M12 22V9l10-2v13' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='9.5' cy='22' r='2.8' fill='%23fff'/%3E%3Ccircle cx='19.5' cy='20' r='2.8' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #faf8f5;
+    --fg: #17161a;
+    --muted: #6b6870;
+    --line: #e4e0da;
+    --card: #ffffff;
+    --accent: #e8572a;
+    --accent-fg: #ffffff;
+    --chord: #c2461d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121214;
+      --fg: #f3f1ee;
+      --muted: #9a97a0;
+      --line: #2a292e;
+      --card: #1a1a1d;
+      --accent: #ff6a3d;
+      --accent-fg: #121214;
+      --chord: #ff8a63;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: max(48px, 10vh) max(20px, env(safe-area-inset-left)) 48px max(20px, env(safe-area-inset-right));
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+  }
+  .brand svg { width: 28px; height: 28px; flex: none; }
+
+  .badge {
+    display: inline-block;
+    margin-top: 56px;
+    padding: 4px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  h1 {
+    margin: 20px 0 0;
+    font-size: clamp(2.6rem, 9vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+  }
+  h1 span { color: var(--accent); }
+
+  .lede {
+    margin: 28px 0 0;
+    max-width: 34em;
+    font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+    color: var(--muted);
+  }
+
+  /* Chord-over-lyric sample */
+  .sheet {
+    margin-top: 44px;
+    padding: 22px 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: clamp(0.9rem, 3.2vw, 1.05rem);
+    overflow-x: auto;
+  }
+  .sheet .label {
+    font-family: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .line { white-space: nowrap; line-height: 1; padding-top: 1.3em; }
+  .line + .line { margin-top: 0.7em; }
+  .s { position: relative; display: inline-block; }
+  .s[data-c]::before {
+    content: attr(data-c);
+    position: absolute;
+    left: 0;
+    bottom: 1.35em;
+    color: var(--chord);
+    font-weight: 700;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+    padding: 14px 22px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: var(--accent-fg);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  .cta:hover { opacity: .92; transform: translateY(-1px); }
+  .cta:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+  .cta-note { margin: 12px 0 0; font-size: 0.9rem; color: var(--muted); }
+  .cta-note a { color: inherit; }
+
+  footer {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 20px max(24px, env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta { transition: none; }
+    .cta:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand" aria-label="SONGUSCRIPT">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M12 22V9l10-2v13" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="22" r="2.8" fill="#fff"/><circle cx="19.5" cy="20" r="2.8" fill="#fff"/></svg>
+    SONGUSCRIPT
+  </div>
+
+  <span class="badge">Coming 2027 · iPhone, iPad &amp; Mac</span>
+
+  <h1>Write the <span>whole</span> song.</h1>
+
+  <p class="lede">
+    Lyrics and chords live together, with each chord locked to the right syllable,
+    so nothing drifts when you edit. Record a voice note on any section, find rhymes
+    without leaving the page, and drop in tab or staff snippets when words aren't enough.
+  </p>
+
+  <div class="sheet" aria-label="Example: lyrics with chords placed above syllables">
+    <div class="label">Verse 1</div>
+    <div class="line"><span class="s" data-c="G">Hold</span> the line until the <span class="s" data-c="Em">morn</span>ing</div>
+    <div class="line">Every <span class="s" data-c="C">word</span> is worth the <span class="s" data-c="D">wait</span>ing</div>
+  </div>
+
+  <a class="cta" href="mailto:christian@songuscript.com?subject=SONGUSCRIPT">
+    Get in touch
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <p class="cta-note">Questions, early access, press: <a href="mailto:christian@songuscript.com">christian@songuscript.com</a></p>
+</main>
+
+<footer>
+  <span>© 2026 SONGUSCRIPT</span>
+  <span>Made for songwriters.</span>
+</footer>
+</body>
+</html>
