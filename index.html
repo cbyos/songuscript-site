@@ -113,6 +113,38 @@
     color: var(--muted);
     margin-bottom: 10px;
   }
+  .sheet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .sheet-head .label { margin-bottom: 0; }
+  .rec {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .rec::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e5484d;
+  }
+  .snippets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .snippets .label { margin-bottom: 8px; }
+  .tab { margin: 0; font: inherit; font-size: 0.82em; line-height: 1.35; color: var(--fg); }
+  .staff { display: block; width: 100%; max-width: 320px; height: auto; color: var(--fg); }
+  @media (max-width: 560px) {
+    .snippets { grid-template-columns: 1fr; }
+  }
   .line { white-space: nowrap; line-height: 1; padding-top: 1.3em; }
   .line + .line { margin-top: 0.7em; }
   .s { position: relative; display: inline-block; }
@@ -185,9 +217,58 @@
   </p>
 
   <div class="sheet" aria-label="Example: lyrics with chords placed above syllables">
-    <div class="label">Verse 1</div>
+    <div class="sheet-head">
+      <div class="label">Verse 1</div>
+      <span class="rec" role="img" aria-label="Voice note"></span>
+    </div>
     <div class="line"><span class="s" data-c="G">Hold</span> the line until the <span class="s" data-c="Em">morn</span>ing</div>
     <div class="line">Every <span class="s" data-c="C">word</span> is worth the <span class="s" data-c="D">wait</span>ing</div>
+
+    <div class="snippets">
+      <div>
+        <div class="label">Tab</div>
+<pre class="tab" aria-label="Guitar tab snippet">e|-------3-----2-----|
+B|-----0---0-----3---|
+G|---0-------0-------|
+D|-------------------|
+A|-------------------|
+E|-3-----------------|</pre>
+      </div>
+      <div>
+        <div class="label">Staff</div>
+        <svg class="staff" viewBox="0 0 320 85" role="img" aria-label="Staff snippet: two bars of melody in 4/4">
+          <g stroke="currentColor" stroke-width="1" opacity=".55">
+            <line x1="0" y1="20" x2="320" y2="20"/><line x1="0" y1="30" x2="320" y2="30"/>
+            <line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="50" x2="320" y2="50"/>
+            <line x1="0" y1="60" x2="320" y2="60"/>
+            <line x1="185" y1="20" x2="185" y2="60"/><line x1="312" y1="20" x2="312" y2="60"/>
+          </g>
+          <rect x="315" y="20" width="4" height="40" fill="currentColor"/>
+          <text x="0" y="70" font-size="84" fill="currentColor" font-family="'Apple Symbols','Noto Music','Segoe UI Symbol',serif">&#x1D11E;</text>
+          <g font-size="22" font-weight="700" fill="currentColor" font-family="Georgia,'Times New Roman',serif" text-anchor="middle">
+            <text x="50" y="38">4</text><text x="50" y="58">4</text>
+          </g>
+          <g fill="currentColor">
+            <ellipse cx="70" cy="50" rx="6" ry="4.5" transform="rotate(-20 70 50)"/>
+            <ellipse cx="100" cy="40" rx="6" ry="4.5" transform="rotate(-20 100 40)"/>
+            <ellipse cx="130" cy="30" rx="6" ry="4.5" transform="rotate(-20 130 30)"/>
+            <ellipse cx="160" cy="40" rx="6" ry="4.5" transform="rotate(-20 160 40)"/>
+            <ellipse cx="210" cy="45" rx="6" ry="4.5" transform="rotate(-20 210 45)"/>
+            <ellipse cx="240" cy="50" rx="6" ry="4.5" transform="rotate(-20 240 50)"/>
+          </g>
+          <ellipse cx="280" cy="60" rx="5.2" ry="3.7" transform="rotate(-20 280 60)" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <g stroke="currentColor" stroke-width="1.4">
+            <line x1="75.5" y1="50" x2="75.5" y2="15"/>
+            <line x1="94.5" y1="40" x2="94.5" y2="75"/>
+            <line x1="124.5" y1="30" x2="124.5" y2="65"/>
+            <line x1="154.5" y1="40" x2="154.5" y2="75"/>
+            <line x1="215.5" y1="45" x2="215.5" y2="10"/>
+            <line x1="245.5" y1="50" x2="245.5" y2="15"/>
+            <line x1="285.5" y1="60" x2="285.5" y2="25"/>
+          </g>
+        </svg>
+      </div>
+    </div>
   </div>
 
   <a class="cta" href="mailto:christian@songuscript.com?subject=SONGUSCRIPT">
