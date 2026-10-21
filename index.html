@@ -6,32 +6,43 @@
 <title>SONGUSCRIPT — Write the whole song.</title>
 <meta name="description" content="SONGUSCRIPT is a songwriting app for iPhone, iPad and Mac. Lyrics, chords, voice notes, rhymes and notation in one place. Coming 2027.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3EBDD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1F2A44" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="SONGUSCRIPT — Write the whole song.">
 <meta property="og:description" content="A songwriting app for iPhone, iPad and Mac. Coming 2027.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e8572a'/%3E%3Cpath d='M12 22V9l10-2v13' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='9.5' cy='22' r='2.8' fill='%23fff'/%3E%3Ccircle cx='19.5' cy='20' r='2.8' fill='%23fff'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://songuscript.com/">
+<meta property="og:image" content="https://songuscript.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root {
-    --bg: #faf8f5;
-    --fg: #17161a;
-    --muted: #6b6870;
-    --line: #e4e0da;
-    --card: #ffffff;
-    --accent: #e8572a;
-    --accent-fg: #ffffff;
-    --chord: #c2461d;
+    --navy: #1F2A44;
+    --cream: #F3EBDD;
+    --bg: var(--cream);
+    --fg: var(--navy);
+    --muted: #545A6A;
+    --line: #DAD4CB;
+    --card: #F9F5EE;
+    --accent: var(--navy);
+    --accent-fg: var(--cream);
+    --chord: var(--navy);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #121214;
-      --fg: #f3f1ee;
-      --muted: #9a97a0;
-      --line: #2a292e;
-      --card: #1a1a1d;
-      --accent: #ff6a3d;
-      --accent-fg: #121214;
-      --chord: #ff8a63;
+      --bg: var(--navy);
+      --fg: var(--cream);
+      --muted: #B3B1AF;
+      --line: #36425F;
+      --card: #27334F;
+      --accent: var(--cream);
+      --accent-fg: var(--navy);
+      --chord: var(--cream);
     }
   }
 
@@ -66,7 +77,7 @@
     font-size: 0.95rem;
     letter-spacing: 0.18em;
   }
-  .brand svg { width: 28px; height: 28px; flex: none; }
+  .brand svg { width: 40px; height: 32px; flex: none; }
 
   .badge {
     display: inline-block;
@@ -85,7 +96,7 @@
     letter-spacing: -0.035em;
     font-weight: 800;
   }
-  h1 span { color: var(--accent); }
+  h1 span { text-decoration: underline; text-decoration-thickness: 0.09em; text-underline-offset: 0.12em; }
 
   .lede {
     margin: 28px 0 0;
@@ -186,7 +197,7 @@
 <body>
 <main>
   <div class="brand" aria-label="SONGUSCRIPT">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor" style="color:var(--accent)"/><path d="M12 22V9l10-2v13" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="22" r="2.8" fill="#fff"/><circle cx="19.5" cy="20" r="2.8" fill="#fff"/></svg>
+    <svg viewBox="150 220 700 560" aria-hidden="true"><path d="M248.31,401.93c-2.35-2.89-7.03-1.16-6.91,2.56.06,2.06.21,4.45.5,7.17,3.18,30.6,31.86,52.46,59.98,61.2,54.74,16.1,120.11,2.68,175.34-9.13,32.3-6.73,66.32-15.38,98.62-19.95,44.87-5.88,91.27-8.19,135.59,2.56,103.36,23.02,160.11,136.25,114.48,232.71l-.07.15c-28.9,62.66-99.76,100.61-166.76,92.71-25.31-1.86-50.51-8.78-70.62-24.77-20.44-15.28-35.46-37.51-40.75-62.56-4.6-20.51-5.13-42.33,2.42-62.18,8.07-23.66,23.45-45.23,44.9-58.4,24.5-15.36,54.33-22.28,82.93-16.18,24.55,4.54,45.64,19.66,63.33,36.99,5.09,4.98,8.25,9.76,14.25,17.08.83.98,2.69,3.48,2.69,3.48.11.57-1.57-15.79-4.02-24-8.33-27.93-31.77-46.18-58.19-53.17-68.22-16.64-142.13,3.39-209.73,18.08-95.1,20.8-213.47,36.55-285.85-42.89-89.62-98.1-27.83-256.43,102.15-273.16,34.28-4.15,70.78,1.43,100.92,18.7,32.15,18.57,52.09,53.75,53.87,90.64,2.47,27.6-8.1,55.59-24.98,77.18-16,19.95-39.52,32.71-64.15,38.53-9.32,2.11-18.97,2.71-28.5,2.15-37.52-1.61-70.23-26.84-91.42-55.51h0Z" fill="currentColor"/></svg>
     SONGUSCRIPT
   </div>
 
